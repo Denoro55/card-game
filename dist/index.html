@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Game</title>
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>	
+	<div class="game">
+		<div class="game__wrap">
+			<div class="game__game">
+				<div class="stage">
+					<div class="stage__left stage__card">
+						<div class="card player-1">
+							<div class="card__health bar">
+								<div class="bar__bar"></div>
+								<div class="bar__count player1-healthbar">100 / 100</div>
+								<div class="bar__result player1-health">0</div>
+								<div class="bar__fill player1-health-fill"></div>
+							</div>
+							<div class="card__mana bar">
+								<div class="bar__bar"></div>
+								<div class="bar__count player1-manabar">100 / 100</div>
+								<div class="bar__result bar__result_mana player1-mana">0</div>
+								<div class="bar__fill bar__fill_mana player1-mana-fill"></div>
+							</div>
+							<div class="card__image player1-card active">
+								<img src="" alt="">
+							</div>
+							<div class="card__abilities">
+								<div class="abilities">
+									<div class="abilities__item">
+										<div class="ability"></div>
+									</div>
+									<div class="abilities__item">
+										<div class="ability"></div>
+									</div>
+									<div class="abilities__item">
+										<div class="ability"></div>
+									</div>
+									<div class="abilities__item">
+										<div class="ability"></div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="stage__action">
+						<div class="stage__name js-stage-name">Гоблин "Ильес"</div>
+						<div class="action">
+							<div class="action__player player1-action">Прыжок</div>
+							<div class="action__enemy player2-action">Присед</div>
+						</div>
+						<div class="stage__level js-stage-level">Уровень 1</div>
+					</div>
+					<div class="stage__right stage__card">
+						<div class="card player-2">
+							<div class="card__health bar">
+								<div class="bar__bar"></div>
+								<div class="bar__count player2-healthbar js-enemy-health">100 / 100</div>
+								<div class="bar__result bar__result_enemy player2-health">0</div>
+								<div class="bar__fill player2-health-fill"></div>
+							</div>
+							<div class="card__mana bar">
+								<div class="bar__bar"></div>
+								<div class="bar__count player2-manabar js-enemy-mana">100 / 100</div>
+								<div class="bar__result bar__result_enemy player2-mana">0</div>
+							</div>
+							<div class="card__image player2-card">
+								<img src="" alt="">
+							</div>
+							<div class="card__abilities">
+								<div class="abilities">
+									<div class="abilities__item">
+										<div class="ability"></div>
+									</div>
+									<div class="abilities__item">
+										<div class="ability"></div>
+									</div>
+									<div class="abilities__item">
+										<div class="ability"></div>
+									</div>
+									<div class="abilities__item">
+										<div class="ability" style="background-image: url('img/abilities/fear.jpg')"></div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="game__menu">
+				<div class="menu">
+					<div class="menu__location">Текущая локация: <span class="js-location">Лес ублюдков</span></div>
+					<div class="menu__level">
+						<div class="level menu-level">
+							<div class="level__text js-level">Уровень 1</div>
+							<div class="level__bar">
+								<div class="level__bar-fill js-level-fill"></div>
+							</div>
+							<div class="level__progress js-level-progress">0 / 100</div>
+						</div>
+					</div>
+					<div class="menu__info">
+						<div class="info">
+							<div class="info__list">
+<!--								<div class="info__block info__block_level">-->
+<!--									Уровень: <span>1 (50%)</span>-->
+<!--								</div>-->
+								<div class="info__block info__block_health">
+									Здоровье: <span class="js-health">100 / 100</span>
+								</div>
+								<div class="info__block info__block_mana">
+									Мана: <span class="js-mana">49 / 100</span>
+								</div>
+								<div class="info__block info__block_gold">
+									Золото: <span class="js-gold">24</span>
+								</div>
+								<div class="info__block info__block_crystals">
+									Кристаллы: <span class="js-crystals">1</span>
+								</div>
+								<div class="info__block info__block_kills">
+									Убито: <span class="js-kills">13</span>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="menu__content">
+						<div class="menu__actions">
+							<div class="menu__action">
+								<div class="button js-find-enemy">Искать противника</div>
+							</div>
+<!--							<div class="menu__action">-->
+<!--								<div class="button unactive">Отдохнуть</div>-->
+<!--							</div>-->
+							<div class="menu__action">
+								<div class="button unactive">Торговля</div>
+							</div>
+							<div class="menu__action">
+								<div class="button unactive">Локация</div>
+							</div>
+							<div class="menu__action">
+								<div class="button unactive">Книга монстров</div>
+							</div>
+							<div class="menu__action">
+								<div class="button unactive">Книга заклинаний</div>
+							</div>
+						</div>
+						<div class="menu__bottom">
+							<div class="boss">
+<!--								<div class="boss__title">Сложность: <span class="difficult-color-easy">легко</span></div>-->
+								<div class="boss__title">Требования:</div>
+								<div class="boss__requirement">
+									<div class="info__list">
+										<div class="info__block info__block_level">
+											Уровень: <span class="js-boss-level">2</span>
+										</div>
+										<div class="info__block info__block_gold">
+											Золото: <span class="js-boss-gold">50</span>
+										</div>
+										<div class="info__block info__block_crystals">
+											Кристаллы: <span class="js-boss-crystals">5</span>
+										</div>
+									</div>
+								</div>
+								<div class="boss__fight">
+									<div class="button unactive">Сразиться с боссом</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="game__final">
+				<div class="game__final-text">
+					<span class="final-text">Гоблин повержен!</span> <br> Нажмите "M", чтобы выйти в меню.
+				</div>
+			</div>
+			<div class="game__controls">
+				W - прыжок, S - присед, F - удар в голову, G - удар по корпусу, H - удар в прыжке, J - подножка <br> Z - верхний блок, X - блок, С - нижний блок
+			</div>
+		</div>
+	</div>
+<!--	<script src="script.js"></script>-->
+	<script src="main.js"></script>
+</body>
+</html>

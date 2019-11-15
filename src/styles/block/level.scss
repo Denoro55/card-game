@@ -1,0 +1,17 @@
+.level {
+    display: flex;
+    align-items: center;
+
+    &__bar {
+        display: flex;
+        height: 15px;
+        width: 100px;
+        margin: 0 15px;
+        border: 1px solid #fff;
+
+        &-fill {
+            width: 20%;
+            background: $color_green;
+        }
+    }
+}

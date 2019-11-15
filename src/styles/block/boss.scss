@@ -1,0 +1,19 @@
+.boss {
+    display: flex;
+    flex-direction: column;
+
+    &__title {
+        margin-bottom: 15px;
+        font-size: 14px;
+    }
+
+    &__requirement {
+        margin-bottom: 15px;
+    }
+
+    &__fight {
+        padding-top: 10px;
+        display: flex;
+        justify-content: center;
+    }
+}

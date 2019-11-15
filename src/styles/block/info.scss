@@ -1,0 +1,41 @@
+.info {
+    font-size: 12px;
+
+    &__list {
+        display: flex;
+        justify-content: center;
+        margin-left: -20px;
+    }
+
+    &__block {
+        padding-left: 20px;
+
+        &_health {
+            color: red;
+        }
+
+        &_mana {
+            color: cornflowerblue;
+        }
+
+        &_gold {
+            color: gold;
+        }
+
+        &_crystals {
+            color: deepskyblue;
+        }
+
+        &_kills {
+            color: #e07122;
+        }
+
+        &_level {
+            color: #3ebd27;
+        }
+        
+        span {
+            color: #fff;
+        }
+    }
+}

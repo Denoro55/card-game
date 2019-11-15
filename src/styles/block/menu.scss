@@ -1,0 +1,55 @@
+.menu {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    z-index: 1;
+    padding: 40px;
+    font-size: 12px;
+    text-align: center;
+    height: 100%;
+
+    &__location {
+        margin-bottom: 20px;
+        font-size: 18px;
+
+        span {
+            color: $color_green;
+        }
+    }
+
+    &__info {
+        margin-bottom: 30px;
+    }
+
+    &__level {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 20px;
+    }
+
+    &__actions {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        margin-left: -20px;
+        margin-bottom: 20px;
+        padding: 0 90px;
+    }
+
+    &__action {
+        padding-left: 20px;
+        margin-bottom: 20px;
+    }
+
+    &__content {
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+    }
+
+    &__bottom {
+        display: flex;
+        justify-content: center;
+        margin-top: auto;
+    }
+}

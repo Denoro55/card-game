@@ -1,0 +1,18 @@
+.abilities {
+    display: flex;
+    justify-content: center;
+    margin-left: -13px;
+    
+    &__item {
+        padding-left: 13px;
+    }
+}
+
+.ability {
+    width: 40px;
+    height: 40px;
+    border: 2px solid white;
+    -webkit-background-size: cover;
+    background-size: cover;
+    background-position: center;
+}

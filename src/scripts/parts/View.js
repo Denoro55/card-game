@@ -28,8 +28,8 @@ class View {
     }
 
     updateMenu () {
-        this.health.innerHTML = this.stats.health + " / " + this.stats.maxHealth;
-        this.mana.innerHTML = this.stats.mana + " / " + this.stats.maxMana;
+        this.health.innerHTML = this.stats.health;
+        this.mana.innerHTML = this.stats.mana;
         this.gold.innerHTML = this.stats.goldCount;
         this.crystals.innerHTML = this.stats.crystalsCount;
         this.kills.innerHTML = this.stats.kills;

@@ -13,6 +13,11 @@ html {
     font-size: 14px;
 }
 
+body {
+    margin: 0;
+    padding: 0;
+}
+
 * {
     box-sizing: border-box;
 }
@@ -20,13 +25,49 @@ html {
 .game {
     display: flex;
     justify-content: center;
-    padding-top: 20px;
-    //pointer-events: none;
+    align-items: flex-start;
+    padding-top: 60px;
+    min-height: 100vh;
     color: #FFF;
+    background: url('img/menu.jpg');
+    -webkit-background-size: cover;
+    background-size: cover;
+
+    &:before {
+        content: '';
+        display: block;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(black, 0.5);
+    }
 
     &__wrap {
         position: relative;
-        width: 800px;
+        border: 1px solid black;
+        background: url('img/menu.jpg');
+        -webkit-background-size: cover;
+        background-size: cover;
+
+        &:before {
+            content: '';
+            display: block;
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(black, 0.4);
+        }
+
+        &-inner {
+            width: 800px;
+            height: 515px;
+            position: relative;
+            z-index: 2;
+        }
     }
 
     &__menu {
@@ -36,19 +77,10 @@ html {
         top: 0;
         width: 100%;
         height: 100%;
-        background: black;
-        background: url('img/menu.jpg');
-        
-        &:before {
-            content: '';
-            display: block;
-            position: absolute;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(black, 0.5);
-        }
+    }
+
+    &__game {
+        display: none;
     }
 
     &__final {
@@ -62,11 +94,9 @@ html {
         top: 0;
         width: 100%;
         height: 100%;
-        background: black;
         z-index: 10;
         font-size: 18px;
         line-height: 32px;
-        transition: all 0.5s;
         pointer-events: none;
     }
 
@@ -77,15 +107,7 @@ html {
         right: 0;
         left: 0;
         text-align: center;
-        color: #239227;
-    }
-}
-
-.game.completed {
-    .game {
-        &__final {
-            opacity: 1;
-        }
+        color: #499e39;
     }
 }
 
@@ -94,6 +116,23 @@ html {
         &__menu {
             opacity: 0;
             z-index: -1;
+            display: none;
+        }
+        
+        &__game {
+            display: block;
+        }
+    }
+}
+
+.game.completed {
+    .game {
+        &__final {
+            opacity: 1;
+        }
+
+        &__game {
+            display: none;
         }
     }
 }
@@ -101,12 +140,9 @@ html {
 .stage {
     display: flex;
     justify-content: space-between;
-    border: 1px solid black;
     padding: 40px;
-    background: url('img/menu.jpg');
-    -webkit-background-size: cover;
-    background-size: cover;
-    min-height: 500px;
+    min-height: 515px;
+    height: 100%;
 
     &__action {
         position: relative;
@@ -155,8 +191,8 @@ html {
     }
 
     &__mana {
-        background: blue;
         margin-bottom: 18px;
+        background: #285482;
     }
 
     &__image {
@@ -203,7 +239,7 @@ html {
         background: #2ec333;
 
         &_mana {
-            background: blue;
+            background: #346dd6;
         }
     }
 
@@ -250,13 +286,13 @@ html {
 
     &__player {
         border: 1px solid green;
-        transform: translateX(-100%);
+        transform: translateX(-70%);
         margin-bottom: 15px;
     }
 
     &__enemy {
         border: 1px solid red;
-        transform: translateX(100%);
+        transform: translateX(70%);
     }
 
     & > div.active {

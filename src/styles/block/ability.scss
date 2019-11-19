@@ -11,8 +11,8 @@
 .ability {
     width: 40px;
     height: 40px;
-    border: 2px solid white;
-    -webkit-background-size: cover;
-    background-size: cover;
-    background-position: center;
+    border: 1px solid white;
+    -webkit-background-size: cover !important;
+    background-size: cover !important;
+    background-position: center !important;
 }

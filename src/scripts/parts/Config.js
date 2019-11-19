@@ -11,7 +11,7 @@ const config = {
 	goldCount: 50,
 	crystalsCount: 5,
 	kills: 0,
-	currentLocation: 'Лес ублюдков',
+	currentLocation: 'Заброшенный лес',
 	currentEnemy: null,
 	locationIndex: 0,
 	locationImage: ['img/menu.jpg'],
@@ -29,65 +29,77 @@ const config = {
 			{
 				name: `Тыквоголов`,
 				level: 1,
-				health: 100,
+				health: 140,
 				mana: 40,
 				image: 'img/enemy/pumpkin.jpg',
 				attacksChance: [30, 30, 40],
-                exp: 10,
-                gold: [5, 7],
-                crystals: 30,
+				reward: {
+					exp: 10,
+					gold: [5, 3],
+					crystals: 1
+				},
 				attacks: [
 					{
 						damage: [0],
 						attackArea: [-1],
 						position: 0,
 						name: 'Прыжок',
-						chance: 25
+						chance: 10
 					},
 					{
 						damage: [0],
 						attackArea: [-1],
 						position: 2,
 						name: 'Присед',
-						chance: 25
+						chance: 10
 					},
 					{
 						damage: [10, 15],
 						attackArea: [1, 2],
+						attackType: 2,
 						position: 1,
 						name: 'Удар по корпусу',
-						chance: 0
+						chance: 25
+					},
+					{
+						damage: [10, 15],
+						attackArea: [0, 1],
+						attackType: 1,
+						position: 1,
+						name: 'Удар в голову',
+						chance: 20
+					},
+					{
+						damage: [0],
+						attackArea: [-1],
+						position: 1,
+						blockType: 1,
+						blockPercentage: 70,
+						name: 'Верхний блок',
+						chance: 15
 					},
                     {
                         damage: [0],
                         attackArea: [-1],
                         position: 1,
                         name: 'magic',
-                        chance: 50,
+                        chance: 20,
                         magic: [
                             {
                                 damage: [0],
                                 attackArea: [-1],
                                 position: 1,
                                 name: 'Устрашающий вид',
-                                chance: 50,
+                                chance: 100,
+								manaRequired: 5,
                                 type: 0,
                                 turns: 4,
                                 id: 'fear',
                                 image: 'fear.jpg',
-                                text: 'Тыквоголов приобретает демонический вид, что сбивает противников с толку и они теряют уверенность. -30% урона ко всем атакам.'
-                            },
-                            {
-                                damage: [0],
-                                attackArea: [-1],
-                                position: 1,
-                                name: 'Луч смерти',
-                                chance: 50,
-                                type: 0,
-                                turns: 4,
-                                id: 'luch',
-                                image: 'fear.jpg',
-                                text: 'Тыквоголов приобретает демонический вид, что сбивает противников с толку и они теряют уверенность. -30% урона ко всем атакам.'
+                                text: 'Тыквоголов приобретает демонический вид, что сбивает противников с толку и они теряют уверенность. -30% урона ко всем атакам.',
+								effects: {
+									enemyDamage: -0.4
+								}
                             }
                         ]
                     }

@@ -5,7 +5,7 @@ import Player from './parts/Player';
 const menu = new View(config);
 
 const gameBlock = document.querySelector('.game');
-const finalText = document.querySelector('.final-text');
+const finalText = document.querySelector('.js-final-text');
 
 const buttonFindEnemy = document.querySelector('.js-find-enemy');
 
@@ -20,13 +20,13 @@ class Game {
         this.fullTurn = 0;
         this.canTurn = true;
         this.turnTimer = null;
-        // this.AIKeys = ['KeyW', 'KeyS', 'KeyF', 'KeyG', 'KeyH', 'KeyJ'];
         this.play = false;
         this.view.updateMenu();
     }
 
     makeTurn(code) {
         let attack = this.convertAttack(code);
+        if (!attack) return false;
         clearTimeout(this.turnTimer);
         this.currentPlayer.setAttack(attack);
         this.currentPlayer.changeAction();
@@ -37,6 +37,7 @@ class Game {
         } else {
             this.changePlayer();
             this.turnTimer = setTimeout(() => {
+                this.makeTurn('KeyL');
                 this.endTurn();
             }, 1000);
         }
@@ -44,7 +45,11 @@ class Game {
 
     convertAttack(code) {
         if (typeof code === "string") {
-            return this.currentPlayer.controls[code];
+            if (this.currentPlayer.controls[code]) {
+                return this.currentPlayer.controls[code];
+            } else {
+                return false;
+            }
         } else {
             return code;
         }
@@ -82,7 +87,11 @@ class Game {
             if (attack1) {
                 for (let aa = 0; aa < attack1.attackArea.length; aa++) {
                     if (attack1.attackArea[aa] === attack2.position) {
-                        player2.updateHealth(-attack1.damage[aa]);
+                        if (attack2.blockType && attack2.blockType === attack1.attackType) {
+                            player2.updateHealth(Math.floor((-attack1.damage[aa] + (attack1.damage[aa] * attack2.blockPercentage / 100)) * player2.activeAbilities.enemyDamage));
+                        } else {
+                            player2.updateHealth(Math.floor(-attack1.damage[aa] * player2.activeAbilities.enemyDamage));
+                        }
                         break;
                     }
                 }
@@ -100,7 +109,16 @@ class Game {
             if (this.player1.getHealth() <= 0) {
                 finalText.innerHTML = 'Вы потерпели неудачу!';
             } else {
-                finalText.innerHTML = 'Гоблин повержен!';
+                finalText.innerHTML = this.config.currentEnemy.name + " повержен!";
+                this.config.levelProgress += this.config.currentEnemy.reward.exp;
+                this.config.goldCount += Math.floor(this.config.currentEnemy.reward.gold[0] + Math.random() * this.config.currentEnemy.reward.gold[1]);
+                this.config.crystalsCount += this.config.currentEnemy.reward.crystals;
+                this.config.kills ++;
+                if (this.config.levelProgress >= this.config.levelProgressEnd) {
+                    this.config.levelProgress -= this.config.levelProgressEnd;
+                    this.config.level++;
+                    this.config.levelProgressEnd += this.config.levelProgressEnd / 2;
+                }
             }
         }
     }
@@ -133,7 +151,7 @@ class Game {
                 this.currentTurnPlayer = this.player1;
                 this.player1.turn(true);
                 this.turnTimer = setTimeout(() => {
-                    this.endTurn();
+                    this.makeTurn('KeyL');
                 }, 1000);
             }
         }
@@ -149,8 +167,10 @@ class Game {
     }
 
     restart() {
-        this.player1.init(this.config);
-        this.player2.init();
+        this.player1.setHealth(this.config.maxHealth);
+        this.player2.setHealth(this.config.currentEnemy.health);
+        this.player1.setMana(this.config.maxMana);
+        this.player2.setMana(this.config.currentEnemy.mana);
         this.currentPlayer = player1;
         this.currentTurnPlayer = player1;
         this.fullTurn = 0;
@@ -168,6 +188,8 @@ class Game {
     goMenu() {
         gameBlock.classList.remove('play');
         gameBlock.classList.remove('completed');
+        this.player1.clearAbilities();
+        this.player2.clearAbilities();
         this.restart();
         this.view.updateMenu();
     }
@@ -180,9 +202,9 @@ class Game {
         let enemyIndex = Math.floor(Math.random() * this.config.enemies[this.config.locationIndex].length);
         let enemyConfig = this.config.enemies[this.config.locationIndex][enemyIndex];
         this.config.currentEnemy = enemyConfig;
-        this.view.updateGame();
         this.player2.setImage('');
         this.player2.updateAISettings(enemyConfig);
+        this.view.updateGame();
     }
 
     playGame() {
@@ -195,7 +217,7 @@ class Game {
 }
 
 const player1 = new Player('player1', '.player-1', 'img/player/1.jpg');
-const player2 = new Player('player2', '.player-2', 'img/enemy/goblin.jpg');
+const player2 = new Player('player2', '.player-2', '');
 
 const game = new Game(player1, player2, config, menu);
 
